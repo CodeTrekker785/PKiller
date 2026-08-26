@@ -3,7 +3,7 @@
 # App name
 title = My Python App
 
-# Package name: lowercase letters and numbers only
+# Package name
 package.name = mypythonapp
 
 # Package domain
@@ -12,46 +12,44 @@ package.domain = org.example
 # Source code directory
 source.dir = .
 
-# Files to include
+# Files to include in the APK
 source.include_exts = py,png,jpg,jpeg,kv,atlas,json,txt
 
 # Application version
 version = 1.0.0
+android.numeric_version = 1
 
-# Python dependencies required by Android
+# Python dependencies
 requirements = python3,kivy,kivymd,requests
 
 # Screen orientation
 orientation = portrait
 
-# Keep Android status/navigation bars visible
+# Keep status/navigation bars visible
 fullscreen = 0
 
 # Android permissions
 android.permissions = INTERNET
 
-# Android architectures
+# Android architecture
 android.archs = arm64-v8a
 
-# Minimum Android API
+# Android API versions
 android.minapi = 24
-
-# Target Android API
 android.api = 35
 
-# Build debug APK
-android.debug_artifact = apk
+# Android SDK Build Tools
+android.sdk = 35
+android.ndk = 27c
 
-# Build release APK
+# APK output
+android.debug_artifact = apk
 android.release_artifact = apk
 
-# Android application theme
+# Splash screen background
 android.presplash_color = #FFFFFF
 
-# Version code
-android.numeric_version = 1
-
-# Don't include unnecessary files
+# Exclude unnecessary files
 exclude_exts = spec,pyc,pyo
 
 [buildozer]
@@ -59,5 +57,5 @@ exclude_exts = spec,pyc,pyo
 # Build log level
 log_level = 2
 
-# Warn if Buildozer is run as root
+# Warn when running as root
 warn_on_root = 1
