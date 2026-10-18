@@ -1,8 +1,9 @@
-# PairIP Native Library Scanner
+# PairIP Native Library and DEX String Scanner
 
-Use `pairip_native_scanner.py` to inspect APK archives for `libpairipcore.so`
-and other files whose names contain `pairip`. The scanner is read-only: it does
-not modify, rebuild, sign, or patch APKs.
+Use `pairip_native_scanner.py` to inspect APK archives for `libpairipcore.so`,
+other PairIP-named files, and PairIP-related strings in every `classes*.dex`
+entry found in the APK. The scanner is read-only: it does not modify, rebuild,
+sign, or patch APKs.
 
 ## Requirements
 
@@ -29,9 +30,16 @@ Output JSON for scripts or automation:
 python pairip_native_scanner.py app.apk --json
 ```
 
-For native libraries stored under a standard APK path such as
-`lib/arm64-v8a/libpairipcore.so`, the report includes the ZIP path, byte size,
-and ABI folder. Other PairIP-named files are listed as related matches.
+The scanner searches every matching DEX entry, including `classes.dex`,
+`classes2.dex`, `classes3.dex`, and numbered entries such as `classes60.dex`.
+It reads each DEX string table and reports matching string-pool index, string
+data offset, and value. It also reports native library ZIP paths, byte sizes,
+and ABI folders when available.
+
+A string match proves only that the text is present in the DEX string pool; it
+does not prove the app loads that library or explain how the text is used. Some
+references may be assembled dynamically or stored in encoded form and therefore
+not appear as a plain string.
 
 ## Android / Termux
 
@@ -41,5 +49,5 @@ termux-setup-storage
 python pairip_native_scanner.py ~/storage/downloads
 ```
 
-This scanner identifies files for inspection only. A match does not, by itself,
-prove how a library is used or whether it performs a particular check.
+This tool is for read-only inspection and does not bypass or disable app licensing,
+integrity, or security checks.
